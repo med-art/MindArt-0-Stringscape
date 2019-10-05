@@ -12,6 +12,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   strokeWeight(20);
   stroke(50, 200);
+    background(255, 255);
 }
 
 function touchMoved() {
