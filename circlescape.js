@@ -14,12 +14,13 @@ function setup() {
   stroke(50, 200);
 }
 
-function draw() {
+function touchMoved() {
   background(255, 210);
   dragSegment(0, mouseX, mouseY);
   for (let i = 0; i < x.length - 1; i++) {
     dragSegment(i + 1, x[i], y[i]);
   }
+  return false;
 }
 
 function dragSegment(i, xin, yin) {
