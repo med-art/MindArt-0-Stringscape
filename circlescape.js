@@ -1,7 +1,7 @@
 let x = [],
   y = [],
-  segNum = 200,
-  segLength = 12;
+  segNum = 120,
+  segLength = 11;
 
 for (let i = 0; i < segNum; i++) {
   x[i] = 0;
