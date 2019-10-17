@@ -39,12 +39,12 @@ function setup() {
   dotCanv.strokeWeight(dotDia);
 
   lineCanv = createGraphics(windowWidth, windowHeight);
-  lineCanv.strokeWeight(60);
+  lineCanv.strokeWeight(45);
   lineCanv.stroke(70, 210);
 
   shadow = createGraphics(windowWidth, windowHeight);
   shadow.blendMode(DARKEST);
-  shadow.strokeWeight(68);
+  shadow.strokeWeight(50);
   shadow.stroke(229);
 
 
