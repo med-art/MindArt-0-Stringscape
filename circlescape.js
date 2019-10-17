@@ -8,7 +8,7 @@ let colArray = ["#e02027", "#d64389", "#943390", "#0b52a0", "#499ed7", "#16ac84"
 let x = [],
   y = [],
   segNum =85,
-  segLength = 40,
+  segLength = 20,
   numDots = 30,
   dotCanv,
   dotCol = [],
@@ -40,7 +40,7 @@ function setup() {
 
   lineCanv = createGraphics(windowWidth, windowHeight);
   lineCanv.strokeWeight(45);
-  lineCanv.stroke(70, 210);
+  lineCanv.stroke(60, 255);
 
   shadow = createGraphics(windowWidth, windowHeight);
   shadow.blendMode(DARKEST);
@@ -127,8 +127,8 @@ function touchMoved() {
   image(lineCanv, 0, 0, width, height);
 
 
-  blendMode(LIGHTEST);
-  image(texture2, driftVal, 0, width, height);
+  // blendMode(LIGHTEST);
+  // image(texture2, driftVal, 0, width, height);
 }
 
 
