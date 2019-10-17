@@ -119,16 +119,16 @@ function touchMoved() {
   image(shadow, i*2, i*20, width, height);
   }
 
-  blendMode(OVERLAY);
-  image(texture, 0, 0, width, height);
+  // blendMode(OVERLAY);
+  // image(texture, 0, 0, width, height);
 
 
   blendMode(BLEND);
   image(lineCanv, 0, 0, width, height);
 
 
-  blendMode(LIGHTEST);
-  image(texture2, driftVal, 0, width, height);
+  // blendMode(LIGHTEST);
+  // image(texture2, driftVal, 0, width, height);
 }
 
 
