@@ -111,8 +111,8 @@ function touchMoved() {
   // image(shadow, i*2, i*10, width, height);
   // }
   //
-  // blendMode(OVERLAY);
-  // image(texture, 0, 0, width, height);
+  blendMode(OVERLAY);
+  image(texture, 0, 0, width, height);
 
 
   blendMode(BLEND);
