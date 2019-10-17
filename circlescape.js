@@ -7,8 +7,8 @@ let colArray = ["#e02027", "#d64389", "#943390", "#0b52a0", "#499ed7", "#16ac84"
 
 let x = [],
   y = [],
-  segNum =60,
-  segLength = 20,
+  segNum =110,
+  segLength = 30,
   numDots = 30,
   dotCanv,
   dotCol = [],
@@ -23,7 +23,7 @@ let driftVal = 0;
 
 let selected = 0;
 
-let drawActive;
+let drawActive = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -59,7 +59,8 @@ function setup() {
       y[i] = random(0, height);
     }
 
-  //  scatterDot();
+ dragCalc(0, width/2, height/2);
+ touchMoved();
 
 }
 
@@ -93,6 +94,8 @@ function touchStarted(){
 return false;
 }
 
+
+
 function touchMoved() {
 
   if (drawActive){
@@ -104,16 +107,9 @@ function touchMoved() {
   shadow.clear();
   lineCanv.clear();
 
+  dragCalc(selected, winMouseX, winMouseY);
 
 
-  dragSegment(selected, mouseX, mouseY);
-  for (let j = selected; j < x.length - 1; j++) {
-    dragSegment(j + 1, x[j], y[j]);
-  }
-
-  for (let j = selected; j > 0; j--) {
-    dragSegment(j - 1, x[j], y[j]);
-  }
 
 
 
@@ -141,11 +137,17 @@ function touchMoved() {
 
 }
 
-// function touchEnded(){
-//
-//
-//   selected = int(random(0, segLength-1));
-// }
+function dragCalc(_sel, _mouseX, _mouseY){
+
+  dragSegment(_sel, _mouseX, _mouseY);
+  for (let j = _sel; j < x.length - 1; j++) {
+    dragSegment(j + 1, x[j], y[j]);
+  }
+
+  for (let j = _sel; j > 0; j--) {
+    dragSegment(j - 1, x[j], y[j]);
+  }
+}
 
 function dragSegment(i, xin, yin) {
   const dx = xin - x[i];
