@@ -23,6 +23,8 @@ let driftVal = 0;
 
 let selected = 0;
 
+let drawActive;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   strokeWeight(60);
@@ -78,14 +80,24 @@ function touchStarted(){
 
    for (i = 0; i < x.length-1; i++){
 
-  if (dist(winMouseX, winMouseY, x[i], y[i]) < 60){
+  if (dist(winMouseX, winMouseY, x[i], y[i]) < 45){
     selected = i;
+    drawActive = 1;
+    break;
+  }
+
+  else {
+    drawActive = 0;
   }
 }
 return false;
 }
 
 function touchMoved() {
+
+  if (drawActive){
+
+
   background(255, 180);
 
 
@@ -121,6 +133,7 @@ function touchMoved() {
 
   blendMode(LIGHTEST);
   image(texture2, driftVal, 0, width, height);
+}
 
 
   return false;
