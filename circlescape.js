@@ -7,7 +7,7 @@ let colArray = ["#e02027", "#d64389", "#943390", "#0b52a0", "#499ed7", "#16ac84"
 
 let x = [],
   y = [],
-  segNum =160,
+  segNum =60,
   segLength = 20,
   numDots = 30,
   dotCanv,
@@ -43,7 +43,7 @@ function setup() {
   shadow = createGraphics(windowWidth, windowHeight);
   shadow.blendMode(DARKEST);
   shadow.strokeWeight(68);
-  shadow.stroke(249);
+  shadow.stroke(245);
 
 
 
@@ -82,7 +82,7 @@ function touchStarted(){
     selected = i;
   }
 }
-
+return false;
 }
 
 function touchMoved() {
@@ -107,8 +107,8 @@ function touchMoved() {
 
 
   blendMode(MULTIPLY); // DIFFERENCE IS AMAZING // times 10
-  for (let i = 0; i < 6; i++){
-  image(shadow, i*2, i*8, width, height);
+  for (let i = 0; i < 4; i++){
+  image(shadow, i*2, i*10, width, height);
   }
 
   blendMode(OVERLAY);
