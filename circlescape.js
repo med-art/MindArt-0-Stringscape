@@ -82,7 +82,7 @@ function displayCurrent(){
 function touchEnded() {
 
 drawActive = 0;
-  return false;
+
 }
 
 function touchMoved() {
