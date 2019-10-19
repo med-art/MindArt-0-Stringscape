@@ -125,8 +125,8 @@ if (!drawActive){
       image(shadow, i * 2, i * 20, width, height);
     }
     // drawing sequence
-    // blendMode(OVERLAY);
-    // image(texture, 0, 0, width, height);
+    blendMode(OVERLAY);
+    image(texture, 0, 0, width, height);
     blendMode(BLEND);
     image(lineCanv, 0, 0, width, height);
   }
