@@ -32,7 +32,7 @@ let lineCanv, // lineLayer
 let driftVal = 0, selected = 0, drawActive = 1;
 
 function preload() {
-  texture = loadImage('assets/texture2.png');
+  texture = loadImage('assets/texture1.png');
 }
 
 function setup() {
@@ -125,8 +125,8 @@ if (!drawActive){
       image(shadow, i * 2, i * 20, width, height);
     }
     // drawing sequence
-    blendMode(OVERLAY);
-    image(texture, 0, 0, width, height);
+    // blendMode(OVERLAY);
+    // image(texture, 0, 0, width, height);
     blendMode(BLEND);
     image(lineCanv, 0, 0, width, height);
   }
