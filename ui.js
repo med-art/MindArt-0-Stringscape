@@ -36,7 +36,6 @@ function saveNext(){
 }
 
 function reset(){
-
   let fs = fullscreen();
  fullscreen(!fs);
 
