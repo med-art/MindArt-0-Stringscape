@@ -71,6 +71,10 @@ function initialiseLine() {
 
   dragCalc(0, width / 2, height / 2);
   displayCurrent();
+
+  let fs = fullscreen();
+ fullscreen(!fs);
+
 }
 
 function displayCurrent(){

@@ -37,6 +37,9 @@ function saveNext(){
 
 function reset(){
 
+  let fs = fullscreen();
+ fullscreen(!fs);
+
 initialiseLine();
 drawActive = 1;
 displayCurrent();
