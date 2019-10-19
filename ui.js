@@ -1,4 +1,4 @@
-let newButton, saveButton;
+let newButton, saveButton, fsButton;
 let appCol = 0;
 let appBg = '#e3f3fc';
 
@@ -33,11 +33,23 @@ function saveNext(){
   saveButton.style('height', '4.5vmax');
   saveButton.position(width-(15 * vMax), height - (6.5 * vMax));
   saveButton.mousePressed(saveImg);
+
+
+  fsButton = createButton("FS")
+  fsButton.class("select");
+  fsButton.style('font-size', '2.6vmax');
+  fsButton.style('height', '4.5vmax');
+  fsButton.position(width-(15 * vMax), 1.5 * vMax);
+  fsButton.mousePressed(fs);
+}
+
+function fs(){
+  let fs = fullscreen();
+ fullscreen(!fs);
 }
 
 function reset(){
-  let fs = fullscreen();
- fullscreen(!fs);
+
 
 initialiseLine();
 drawActive = 1;

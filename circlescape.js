@@ -18,8 +18,8 @@ further optimisation to chain functions
 
 let x = [],
   y = [],
-  segNum = 150,
-  segLength = 30;
+  segNum = 120,
+  segLength = 25;
 
   let beginning;
 
@@ -72,8 +72,7 @@ function initialiseLine() {
   dragCalc(0, width / 2, height / 2);
   displayCurrent();
 
-  let fs = fullscreen();
- fullscreen(!fs);
+
 
 }
 
