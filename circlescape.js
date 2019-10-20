@@ -29,6 +29,10 @@ let lineCanv, // lineLayer
   shadow, // shadowLayer
   texture;
 
+  let bgCol, stringCol;
+
+
+
 let driftVal = 0, selected = 0, drawActive = 1;
 
 function preload() {
@@ -36,12 +40,16 @@ function preload() {
 }
 
 function setup() {
+
+   stringCol = color('#F2E8DF');
+bgCol = color('#D9B29C');
+
   createCanvas(windowWidth, windowHeight);
   // strokeWeight(60); // not required, confirm deletion?
 
   lineCanv = createGraphics(windowWidth, windowHeight);
   lineCanv.strokeWeight(45);
-  lineCanv.stroke(60, 255);
+  lineCanv.stroke(stringCol, 255);
 
   shadow = createGraphics(windowWidth, windowHeight);
   shadow.blendMode(DARKEST);
@@ -105,7 +113,7 @@ if (!drawActive){
 }
 
   if (drawActive) {
-    background(255, 180);
+    background(bgCol);
     // do we really need these Layers? // or do we need double the calculation of Lines
     shadow.clear();
     lineCanv.clear();
@@ -125,8 +133,8 @@ if (!drawActive){
       image(shadow, i * 2, i * 20, width, height);
     }
     // drawing sequence
-    blendMode(OVERLAY);
-    image(texture, 0, 0, width, height);
+    // blendMode(OVERLAY);
+    // image(texture, 0, 0, width, height);
     blendMode(BLEND);
     image(lineCanv, 0, 0, width, height);
   }
