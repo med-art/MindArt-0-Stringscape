@@ -34,12 +34,9 @@ function saveNext(){
   saveButton.position(width-(15 * vMax), height - (6.5 * vMax));
   saveButton.mousePressed(saveImg);
 
-
-  fsButton = createButton("FS")
-  fsButton.class("select");
-  fsButton.style('font-size', '2.6vmax');
-  fsButton.style('height', '4.5vmax');
-  fsButton.position(width-(15 * vMax), 1.5 * vMax);
+  fsButton = createImg('assets/enterFS.png');
+  fsButton.style('height', '4.5vMax');
+  fsButton.position(width-(7.5 * vMax), 1.5 * vMax);
   fsButton.mousePressed(fs);
 }
 
