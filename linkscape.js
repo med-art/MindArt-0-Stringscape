@@ -16,9 +16,11 @@ let driftVal = 0,
   selected = 0,
   drawActive = 1;
 
+let audio;
 
 function preload() {
   texture = loadImage('assets/texture1.png');
+    audio = loadSound('assets/audio.mp3');
 }
 
 function setup() {
@@ -39,8 +41,9 @@ function setup() {
   initialiseLine();
 
   calcDimensions();
-  saveNext();
+  textLayer = createGraphics(windowWidth, windowHeight);
 
+slideShow();
 }
 
 function initialiseLine() {
@@ -70,6 +73,8 @@ function touchEnded() {
 
 
 function touchMoved() {
+
+  if (introState === 3) {
 
 if (multiselectable){
   if (!drawActive) {
@@ -137,8 +142,17 @@ else {
   blendMode(BLEND);
   image(lineCanv, 0, 0, width, height);
   }
+}
+else {
 
-
+  // if (slide > 0) {
+  //
+  //   if (dist(tempCosX,tempSinY,winMouseX,winMouseY) < ellipseSize/2){
+  //     ellipseSize = ellipseSize-(0.1);
+  //     arcRadius = arcRadius-(0.1);
+  //   }
+  // }
+}
 
   return false;
 }
@@ -174,4 +188,49 @@ function segment(x, y, a) {
   shadow.rotate(a);
   shadow.line(0, 0, segLength, 0);
   shadow.pop();
+}
+
+
+function draw() {
+
+if (introState === 3){
+
+  } else {
+
+      //introLayer.image(textLayer, 0, 0, width, height);
+      blendMode(BLEND);
+      background(31, 43, 69, 100);
+      //image(introLayer, 0, 0, width, height);
+
+
+      if (slide > 0) {
+
+      blendMode(BLEND);
+        fill(color('#469ede'));
+        noStroke();
+
+
+
+
+
+        // tempCosX = (arcRadius * cos(radians(driftY/3))) + width / 2;
+        // tempSinY = (arcRadius * sin(radians(driftY/3))) + height / 2;
+        // ellipse(tempCosX, tempSinY, ellipseSize, ellipseSize);
+        //
+        // driftY+=1.5;
+
+        // if (driftY <= 100 || driftY >= height- 100) {
+        //   inverter = -inverter;
+        //   }
+      }
+
+      if (slide === 0) {
+        textLayer.text(introText[slide], width / 2, (height / 8) * (slide + 2));
+      } else {
+        textLayer.text(introText[slide - 1], width / 2, (height / 6) * (slide));
+      } // this if else statgement needs to be replaced with a better system. The current state tracking is not working
+      image(textLayer, 0, 0, width, height);
+
+}
+
 }

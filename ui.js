@@ -1,6 +1,6 @@
 let newButton, saveButton, fsButton;
 let appCol = 0;
-let appBg = '#e3f3fc';
+let appBg = '#1f2b45';
 
 let button1, button2;
 

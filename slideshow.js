@@ -1,6 +1,5 @@
 let introText = ["Touch", "Look", "Listen", "Touch"];
 
-let appCol = "#7cce6c";
 
 let slide = 0;
 let delayTime = 8000;
@@ -40,9 +39,9 @@ function slideShow() {
   if (slide === introText.length) {
     textLayer.clear();
     introState = 3;
-    makeSwatch();
-    newGrid();
-    //restart();
+    saveNext();
+    touchMoved();
+
     counter = 0;
   }
 
