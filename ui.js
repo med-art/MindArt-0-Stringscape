@@ -2,7 +2,10 @@ let newButton, saveButton, fsButton;
 let appCol = 0;
 let appBg = '#e3f3fc';
 
+let button1, button2;
+
 let vW, vMax, vMin;
+let multiselectable = 0;
 
 
 function calcDimensions() {
@@ -38,6 +41,64 @@ function saveNext(){
   fsButton.style('height', '4.5vMax');
   fsButton.position(width-(7.5 * vMax), 1.5 * vMax);
   fsButton.mousePressed(fs);
+
+  button1 = createImg('assets/icon1.0.png');
+  button1.remove();
+  button1 = createImg('assets/icon1.1.png');
+  button1.style('width', '21vmax');
+  button1.position(4 * vMax, height - (14 * vMax));
+  button1.mousePressed(switcher);
+
+  button2 = createImg('assets/icon2.1.png');
+  button2.remove();
+  button2 = createImg('assets/icon2.0.png');
+  button2.style('width', '21vmax');
+  button2.position(25 * vMax, height - (14 * vMax));
+  button2.mousePressed(switcher);
+
+
+
+}
+
+function switcher(){
+  multiselectable = !multiselectable;
+
+
+  if (!multiselectable){
+
+    button1.remove();
+    button1 = createImg('assets/icon1.1.png');
+    button1.style('width', '21vmax');
+    button1.position(4 * vMax, height - (14 * vMax));
+    button1.mousePressed(switcher);
+
+
+    button2.remove();
+    button2 = createImg('assets/icon2.0.png');
+    button2.style('width', '21vmax');
+    button2.position(25 * vMax, height - (14 * vMax));
+    button2.mousePressed(switcher);
+  }
+
+  else {
+
+    button1.remove();
+    button1 = createImg('assets/icon1.0.png');
+    button1.style('width', '21vmax');
+    button1.position(4 * vMax, height - (14 * vMax));
+    button1.mousePressed(switcher);
+
+
+    button2.remove();
+    button2 = createImg('assets/icon2.1.png');
+    button2.style('width', '21vmax');
+    button2.position(25 * vMax, height - (14 * vMax));
+    button2.mousePressed(switcher);
+  }
+
+
+
+
 }
 
 function fs(){

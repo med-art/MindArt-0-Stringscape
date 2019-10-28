@@ -16,7 +16,6 @@ let driftVal = 0,
   selected = 0,
   drawActive = 1;
 
-let multiselectable = 1;
 
 function preload() {
   texture = loadImage('assets/texture1.png');
@@ -24,8 +23,8 @@ function preload() {
 
 function setup() {
 
-  stringCol = color('#F2E8DF');
-  bgCol = color('#D9B29C');
+  stringCol = color('#1c1c1c');
+  bgCol = color('#f2f2f2');
 
   createCanvas(windowWidth, windowHeight);
 
@@ -68,9 +67,7 @@ function touchEnded() {
   drawActive = 0;
 }
 
-function keyPressed(){
-  multiselectable = !multiselectable;
-}
+
 
 function touchMoved() {
 
@@ -107,9 +104,9 @@ if (multiselectable){
     for (let i = 0; i < 2; i++) {
       image(shadow, i * 2, i * 20, width, height);
     }
-    // drawing sequence
-    // blendMode(OVERLAY);
-    // image(texture, 0, 0, width, height);
+  //  drawing sequence
+    blendMode(OVERLAY);
+    image(texture, 0, 0, width, height);
     blendMode(BLEND);
     image(lineCanv, 0, 0, width, height);
   }
@@ -135,8 +132,8 @@ else {
     image(shadow, i * 2, i * 20, width, height);
   }
   // drawing sequence
-  // blendMode(OVERLAY);
-  // image(texture, 0, 0, width, height);
+  blendMode(OVERLAY);
+  image(texture, 0, 0, width, height);
   blendMode(BLEND);
   image(lineCanv, 0, 0, width, height);
   }
