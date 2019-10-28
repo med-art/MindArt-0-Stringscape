@@ -45,15 +45,15 @@ function saveNext(){
   button1 = createImg('assets/icon1.0.png');
   button1.remove();
   button1 = createImg('assets/icon1.1.png');
-  button1.style('width', '21vmax');
-  button1.position(4 * vMax, height - (14 * vMax));
+  button1.style('width', '16vmax');
+  button1.position(3 * vMax, height - (10 * vMax));
   button1.mousePressed(switcher);
 
   button2 = createImg('assets/icon2.1.png');
   button2.remove();
   button2 = createImg('assets/icon2.0.png');
-  button2.style('width', '21vmax');
-  button2.position(25 * vMax, height - (14 * vMax));
+  button2.style('width', '16vmax');
+  button2.position(19 * vMax, height - (10 * vMax));
   button2.mousePressed(switcher);
 
 
@@ -68,15 +68,15 @@ function switcher(){
 
     button1.remove();
     button1 = createImg('assets/icon1.1.png');
-    button1.style('width', '21vmax');
-    button1.position(4 * vMax, height - (14 * vMax));
+    button1.style('width', '16vmax');
+    button1.position(3 * vMax, height - (10 * vMax));
     button1.mousePressed(switcher);
 
 
     button2.remove();
     button2 = createImg('assets/icon2.0.png');
-    button2.style('width', '21vmax');
-    button2.position(25 * vMax, height - (14 * vMax));
+    button2.style('width', '16vmax');
+    button2.position(19 * vMax, height - (10 * vMax));
     button2.mousePressed(switcher);
   }
 
@@ -84,15 +84,15 @@ function switcher(){
 
     button1.remove();
     button1 = createImg('assets/icon1.0.png');
-    button1.style('width', '21vmax');
-    button1.position(4 * vMax, height - (14 * vMax));
+    button1.style('width', '16vmax');
+    button1.position(3 * vMax, height - (10 * vMax));
     button1.mousePressed(switcher);
 
 
     button2.remove();
     button2 = createImg('assets/icon2.1.png');
-    button2.style('width', '21vmax');
-    button2.position(25 * vMax, height - (14 * vMax));
+    button2.style('width', '16vmax');
+    button2.position(19 * vMax, height - (10 * vMax));
     button2.mousePressed(switcher);
   }
 
