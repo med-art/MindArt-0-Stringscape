@@ -1,6 +1,6 @@
 let x = [],
   y = [],
-  segNum = 120,
+  segNum = 60,
   segLength = 22;
 
 let selectedArray = [];
