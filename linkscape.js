@@ -1,7 +1,7 @@
 let x = [],
   y = [],
   segNum = 60,
-  segLength = 22;
+  segLength = 20;
 
 let selectedArray = [];
 
