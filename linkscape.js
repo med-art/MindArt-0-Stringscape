@@ -1,7 +1,7 @@
 let x = [],
   y = [],
-  segNum = 30,
-  segLength = 40;
+  segNum = 120,
+  segLength = 25;
 
 let selectedArray = [];
 
@@ -110,8 +110,8 @@ if (multiselectable){
       image(shadow, i * 2, i * 20, width, height);
     }
   //  drawing sequence
-    // blendMode(OVERLAY);
-    // image(texture, 0, 0, width, height);
+    blendMode(OVERLAY);
+    image(texture, 0, 0, width, height);
     blendMode(BLEND);
     image(lineCanv, 0, 0, width, height);
   }
@@ -137,8 +137,8 @@ else {
     image(shadow, i * 2, i * 20, width, height);
   }
   // drawing sequence
-  // blendMode(OVERLAY);
-  // image(texture, 0, 0, width, height);
+  blendMode(OVERLAY);
+  image(texture, 0, 0, width, height);
   blendMode(BLEND);
   image(lineCanv, 0, 0, width, height);
   }
