@@ -94,13 +94,13 @@ function touchMoved() {
         } else {
           dragCalc(selected, winMouseX, winMouseY);
         }
-        blendMode(MULTIPLY); // DIFFERENCE IS AMAZING // times 10
-        for (let i = 0; i < 2; i++) {
-          image(shadow, i * 2, i * 20, width, height);
-        }
-        //  drawing sequence
-        // blendMode(OVERLAY);
-        // image(texture, 0, 0, width, height);
+        // blendMode(MULTIPLY); // DIFFERENCE IS AMAZING // times 10
+        // for (let i = 0; i < 2; i++) {
+        //   image(shadow, i * 2, i * 20, width, height);
+        // }
+         drawing sequence
+        blendMode(OVERLAY);
+        image(texture, 0, 0, width, height);
         blendMode(BLEND);
         image(lineCanv, 0, 0, width, height);
       }
