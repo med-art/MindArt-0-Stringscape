@@ -2,7 +2,7 @@ let introText = ["Touch", "Look", "Listen", "Touch"];
 
 
 let slide = 0;
-let delayTime = 8000;
+let delayTime = 800;
 let introState = 0;
 let noiseScale=2;
 
@@ -57,7 +57,7 @@ function slideShow() {
 if (slide > 0){
 
 if (slide === introText.length-1){
-  delayTime = 10000;
+  delayTime = 1000;
 }
 
       slide++;
