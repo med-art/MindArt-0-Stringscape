@@ -31,10 +31,7 @@ function setup() {
   lineCanv = createGraphics(windowWidth, windowHeight);
   lineCanv.strokeWeight(45);
   lineCanv.stroke(stringCol, 255);
-  shadow = createGraphics(windowWidth, windowHeight);
-  shadow.blendMode(DARKEST);
-  shadow.strokeWeight(50);
-  shadow.stroke(229);
+
   initialiseLine();
   calcDimensions();
   textLayer = createGraphics(windowWidth, windowHeight);
@@ -85,7 +82,7 @@ function touchMoved() {
       if (drawActive) {
         background(bgCol);
         // do we really need these Layers? // or do we need double the calculation of Lines
-        shadow.clear();
+
         lineCanv.clear();
 
         if (beginning) {
@@ -94,11 +91,10 @@ function touchMoved() {
         } else {
           dragCalc(selected, winMouseX, winMouseY);
         }
-        // blendMode(MULTIPLY); // DIFFERENCE IS AMAZING // times 10
-        // for (let i = 0; i < 2; i++) {
-        //   image(shadow, i * 2, i * 20, width, height);
-        // }
-    
+        blendMode(DIFFERENCE); // DIFFERENCE IS AMAZING // times 10
+        for (let i = 0; i < 2; i++) {
+          image(lineCanv, i * 2, i * 20, width, height);
+        }
         blendMode(OVERLAY);
         image(texture, 0, 0, width, height);
         blendMode(BLEND);
@@ -107,7 +103,7 @@ function touchMoved() {
     } else {
       background(bgCol);
       // do we really need these Layers? // or do we need double the calculation of Lines
-      shadow.clear();
+
       lineCanv.clear();
 
 
@@ -118,11 +114,7 @@ function touchMoved() {
         dragCalc(0, winMouseX, winMouseY);
       }
 
-      // blendMode(MULTIPLY); // DIFFERENCE IS AMAZING // times 10
-      // for (let i = 0; i < 2; i++) {
-      //   image(shadow, i * 2, i * 20, width, height);
-      // }
-      // drawing sequence
+
       blendMode(OVERLAY);
       image(texture, 0, 0, width, height);
       blendMode(BLEND);
@@ -159,11 +151,7 @@ function segment(x, y, a) {
   lineCanv.line(0, 0, segLength, 0);
   lineCanv.pop();
 
-  shadow.push();
-  shadow.translate(x + 10, y + 10);
-  shadow.rotate(a);
-  shadow.line(0, 0, segLength, 0);
-  shadow.pop();
+
 }
 
 
