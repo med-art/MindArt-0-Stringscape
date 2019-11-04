@@ -98,7 +98,7 @@ function touchMoved() {
         // for (let i = 0; i < 2; i++) {
         //   image(shadow, i * 2, i * 20, width, height);
         // }
-         drawing sequence
+    
         blendMode(OVERLAY);
         image(texture, 0, 0, width, height);
         blendMode(BLEND);
