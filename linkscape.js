@@ -92,9 +92,7 @@ function touchMoved() {
           dragCalc(selected, winMouseX, winMouseY);
         }
         blendMode(DIFFERENCE); // DIFFERENCE IS AMAZING // times 10
-
-          image(lineCanv, 0, 20, width, height);
-
+        image(lineCanv, 0, 20, width, height);
         blendMode(OVERLAY);
         image(texture, 0, 0, width, height);
         blendMode(BLEND);
@@ -114,7 +112,8 @@ function touchMoved() {
         dragCalc(0, winMouseX, winMouseY);
       }
 
-
+      blendMode(DIFFERENCE); // DIFFERENCE IS AMAZING // times 10
+      image(lineCanv, 0, 20, width, height);
       blendMode(OVERLAY);
       image(texture, 0, 0, width, height);
       blendMode(BLEND);
