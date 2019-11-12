@@ -61,6 +61,7 @@ function saveNext(){
 }
 
 function switcher(){
+  click.play();
   multiselectable = !multiselectable;
 
 
@@ -108,11 +109,13 @@ function switcher(){
 }
 
 function fs(){
+  click.play();
   let fs = fullscreen();
  fullscreen(!fs);
 }
 
 function reset(){
+  click.play();
 
 
 initialiseLine();
@@ -123,6 +126,7 @@ displayCurrent();
 
 
 function saveImg() {
+  click.play();
 
 save('stringscape' + month() + day() + hour() + second() + '.jpg');
 }

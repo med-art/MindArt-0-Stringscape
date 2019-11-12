@@ -21,6 +21,7 @@ let audio;
 function preload() {
   texture = loadImage('assets/texture2.png');
   audio = loadSound('assets/audio.mp3');
+  click = loadSound('assets/click.mp3');
 }
 
 function setup() {
@@ -35,6 +36,7 @@ function setup() {
   initialiseLine();
   calcDimensions();
   textLayer = createGraphics(windowWidth, windowHeight);
+  slide = 0;
   slideShow();
 }
 
@@ -172,7 +174,6 @@ function draw() {
     }
 
     if (slide === 0) {
-      textLayer.text(introText[slide], width / 2, (height / 8) * (slide + 2));
     } else {
       textLayer.text(introText[slide - 1], width / 2, (height / 6) * (slide));
     } // this if else statgement needs to be replaced with a better system. The current state tracking is not working
