@@ -5,7 +5,8 @@ let x = [],
 
   let xintro = [0, 0],
   yintro = [0, 0],
-  segLengthintro = 50;
+  segLengthintro = 10;
+  introStrokeWeight = 5;
 
   let introLayer;
 
@@ -38,14 +39,16 @@ function setup() {
   lineCanv = createGraphics(windowWidth, windowHeight);
   lineCanv.strokeWeight(45);
   lineCanv.stroke(stringCol, 255);
+  introLayer = createGraphics(width,height);
+  introLayer.strokeWeight(introStrokeWeight);
+  introLayer.stroke(255, 100);
 
   initialiseLine();
   calcDimensions();
   textLayer = createGraphics(windowWidth, windowHeight);
+
   slide = 0;
-  introLayer = createGraphics(width,height);
-  introLayer.strokeWeight(20.0);
-  introLayer.stroke(255, 100);
+
   slideShow();
 
 }
@@ -132,8 +135,12 @@ function touchMoved() {
       image(lineCanv, 0, 0, width, height);
     }
   } else {
+   introLayer.background(31, 43, 69, 25);
     dragSegmentIntro(0, mouseX, mouseY);
 dragSegmentIntro(1, xintro[0], yintro[0]);
+segLengthintro = segLengthintro + 0.1;
+introStrokeWeight = introStrokeWeight + 0.01;
+  introLayer.strokeWeight(introStrokeWeight);
 
   }
 
