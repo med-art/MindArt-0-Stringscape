@@ -3,6 +3,12 @@ let x = [],
   segNum = 80,
   segLength = 15;
 
+  let xintro = [0, 0],
+  yintro = [0, 0],
+  segLengthintro = 50;
+
+  let introLayer;
+
 let selectedArray = [];
 
 let lineCanv, // lineLayer
@@ -37,7 +43,11 @@ function setup() {
   calcDimensions();
   textLayer = createGraphics(windowWidth, windowHeight);
   slide = 0;
+  introLayer = createGraphics(width,height);
+  introLayer.strokeWeight(20.0);
+  introLayer.stroke(255, 100);
   slideShow();
+
 }
 
 function initialiseLine() {
@@ -121,9 +131,31 @@ function touchMoved() {
       blendMode(BLEND);
       image(lineCanv, 0, 0, width, height);
     }
+  } else {
+    dragSegmentIntro(0, mouseX, mouseY);
+dragSegmentIntro(1, xintro[0], yintro[0]);
+
   }
 
+
   return false;
+}
+
+function dragSegmentIntro(i, xin, yin) {
+  const dx = xin - xintro[i];
+  const dy = yin - yintro[i];
+  const angle = atan2(dy, dx);
+  xintro[i] = xin - cos(angle) * segLengthintro;
+  yintro[i] = yin - sin(angle) * segLengthintro;
+  segmentIntro(xintro[i], yintro[i], angle);
+}
+
+function segmentIntro(x, y, a) {
+  introLayer.push();
+  introLayer.translate(x, y);
+  introLayer.rotate(a);
+  introLayer.line(0, 0, segLengthintro, 0);
+  introLayer.pop();
 }
 
 function dragCalc(_sel, _mouseX, _mouseY) {
@@ -177,6 +209,7 @@ function draw() {
     } else {
       textLayer.text(introText[slide - 1], width / 2, (height / 6) * (slide));
     } // this if else statgement needs to be replaced with a better system. The current state tracking is not working
+    image(introLayer, 0, 0, width, height);
     image(textLayer, 0, 0, width, height);
 
   }
