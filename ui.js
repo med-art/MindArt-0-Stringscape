@@ -25,17 +25,21 @@ function saveNext(){
 
   newButton = createButton("Reset")
   newButton.class("select");
-  newButton.position(width-(15 * vMax), height - (12.5 * vMax));
-  newButton.style('font-size', '2.6vmax');
-  newButton.style('height', '4.5vmax');
+  newButton.style('font-size', '1.7vmax');
+  newButton.style('height', '5vmax');
+  newButton.position(width - (16 * vMax), height - (7 * vMax));
   newButton.mousePressed(reset);
 
-  saveButton = createButton("Save")
+  saveButton = createButton("Sauvegardez")
   saveButton.class("select");
-  saveButton.style('font-size', '2.6vmax');
-  saveButton.style('height', '4.5vmax');
-  saveButton.position(width-(15 * vMax), height - (6.5 * vMax));
+  saveButton.style('font-size', '1.7vmax');
+  saveButton.style('height', '5vmax');
+  saveButton.position(width - (16 * vMax), height - (13 * vMax));
   saveButton.mousePressed(saveImg);
+
+
+
+
 
   fsButton = createImg('assets/enterFS.png');
   fsButton.style('height', '4.5vMax');
