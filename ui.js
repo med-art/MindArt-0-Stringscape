@@ -83,7 +83,7 @@ function switcher(){
     button2.position(19 * vMax, height - (10 * vMax));
     button2.mousePressed(switcher);
 
-      segLength =5;
+      segLength =7;
 
   }
 
@@ -102,7 +102,7 @@ function switcher(){
     button2.position(19 * vMax, height - (10 * vMax));
     button2.mousePressed(switcher);
 
-      segLength = 8;
+      segLength = 10;
 
   }
 
