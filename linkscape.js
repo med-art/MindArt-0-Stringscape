@@ -1,6 +1,6 @@
 let x = [],
   y = [],
-  segNum = 160,
+  segNum = 200,
   segLength = 8;
 let xintro = [0, 0],
   yintro = [0, 0],
