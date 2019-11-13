@@ -1,7 +1,7 @@
 let x = [],
   y = [],
-  segNum = 80,
-  segLength = 15;
+  segNum = 160,
+  segLength = 8;
 let xintro = [0, 0],
   yintro = [0, 0],
   segLengthintro = 10;
@@ -31,6 +31,7 @@ function setup() {
   lineCanv = createGraphics(windowWidth, windowHeight);
   lineCanv.strokeWeight(45);
   lineCanv.stroke(stringCol);
+    lineCanv.fill(50);
   introLayer = createGraphics(width, height);
   introLayer.strokeWeight(introStrokeWeight);
   introLayer.stroke(255, 100);
@@ -85,8 +86,10 @@ function touchMoved() {
           beginning = 0;
         } else {
           dragCalc(selected, winMouseX, winMouseY);
-        }
-        image(lineCanv, 0, 40, width, height);
+      }
+        image(lineCanv, 0, 26, width, height);
+        image(texture, 0, 0, width, height);
+        image(lineCanv, 0, 23, width, height);
         image(texture, 0, 0, width, height);
         image(lineCanv, 0, 20, width, height);
         image(texture, 0, 0, width, height);
@@ -102,11 +105,15 @@ function touchMoved() {
       } else {
         dragCalc(0, winMouseX, winMouseY);
       }
-      image(lineCanv, 0, 40, width, height);
+      image(lineCanv, 0, 26, width, height);
+      image(texture, 0, 0, width, height);
+      image(lineCanv, 0, 23, width, height);
       image(texture, 0, 0, width, height);
       image(lineCanv, 0, 20, width, height);
       image(texture, 0, 0, width, height);
       image(lineCanv, 0, 0, width, height);
+
+
     }
   } else {
     introLayer.background(31, 43, 69, 25);
