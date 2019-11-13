@@ -33,8 +33,7 @@ function preload() {
 
 function setup() {
 
-  stringCol = color('#1c1c1c');
-  bgCol = color('#f2f2f2');
+
   createCanvas(windowWidth, windowHeight);
   lineCanv = createGraphics(windowWidth, windowHeight);
   lineCanv.strokeWeight(45);
@@ -48,6 +47,8 @@ function setup() {
   textLayer = createGraphics(windowWidth, windowHeight);
 
   slide = 0;
+  stringCol = color('#1c1c1c');
+  bgCol = color('#f2f2f2');
 
   slideShow();
 
@@ -139,7 +140,7 @@ function touchMoved() {
     dragSegmentIntro(0, mouseX, mouseY);
 dragSegmentIntro(1, xintro[0], yintro[0]);
 segLengthintro = segLengthintro + 0.1;
-introStrokeWeight = introStrokeWeight + 0.01;
+introStrokeWeight = introStrokeWeight + 0.04;
   introLayer.strokeWeight(introStrokeWeight);
 
   }
@@ -207,7 +208,7 @@ function draw() {
     if (slide > 0) {
 
       blendMode(BLEND);
-      fill(color('#469ede'));
+      fill('#469ede');
       noStroke();
 
     }
