@@ -22,7 +22,7 @@ function calcDimensions() {
 
 function saveNext(){
 
-  newButton = createButton("Reset")
+  newButton = createButton("Remettre")
   newButton.class("select");
   newButton.style('font-size', '1.7vmax');
   newButton.style('height', '5vmax');

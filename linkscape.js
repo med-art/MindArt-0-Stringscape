@@ -186,3 +186,22 @@ function draw() {
     image(textLayer, 0, 0, width, height);
   }
 }
+
+
+function windowResized() {
+
+  resizeCanvas(windowWidth, windowHeight);
+  introLayer.resizeCanvas(windowWidth, windowHeight);
+  textLayer.resizeCanvas(windowWidth, windowHeight);
+  lineCanv.resizeCanvas(windowWidth, windowHeight);
+  touchMoved();
+
+  // need to switch the arrays around....
+
+    calcDimensions();
+    if (introState === 3){
+   removeElements();
+   saveNext();
+
+  }
+}
