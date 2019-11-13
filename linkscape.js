@@ -1,7 +1,7 @@
 let x = [],
   y = [],
-  segNum = 160,
-  segLength = 3;
+  segNum = 300,
+  segLength = 5;
 let xintro = [0, 0],
   yintro = [0, 0],
   segLengthintro = 10;
