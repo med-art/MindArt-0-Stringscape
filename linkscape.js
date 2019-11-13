@@ -32,12 +32,13 @@ function preload() {
 }
 
 function setup() {
-
+  stringCol = color('#1c1c1c');
+  bgCol = color('#f2f2f2');
 
   createCanvas(windowWidth, windowHeight);
   lineCanv = createGraphics(windowWidth, windowHeight);
   lineCanv.strokeWeight(45);
-  lineCanv.stroke(stringCol, 255);
+  lineCanv.stroke(stringCol);
   introLayer = createGraphics(width,height);
   introLayer.strokeWeight(introStrokeWeight);
   introLayer.stroke(255, 100);
@@ -47,8 +48,7 @@ function setup() {
   textLayer = createGraphics(windowWidth, windowHeight);
 
   slide = 0;
-  stringCol = color('#1c1c1c');
-  bgCol = color('#f2f2f2');
+
 
   slideShow();
 
