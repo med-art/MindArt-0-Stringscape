@@ -2,31 +2,24 @@ let x = [],
   y = [],
   segNum = 80,
   segLength = 15;
-
-  let xintro = [0, 0],
+let xintro = [0, 0],
   yintro = [0, 0],
   segLengthintro = 10;
-  introStrokeWeight = 5;
-
-  let introLayer;
-
+introStrokeWeight = 5;
+let introLayer;
 let selectedArray = [];
-
 let lineCanv, // lineLayer
   shadow, // shadowLayer
   texture,
   beginning;
-
 let bgCol, stringCol;
-
 let driftVal = 0,
   selected = 0,
   drawActive = 1;
-
 let audio;
 
 function preload() {
-  texture = loadImage('assets/texture2.png');
+  texture = loadImage('assets/texture4.png');
   audio = loadSound('assets/audio.mp3');
   click = loadSound('assets/click.mp3');
 }
@@ -34,24 +27,18 @@ function preload() {
 function setup() {
   stringCol = color('#1c1c1c');
   bgCol = color('#f2f2f2');
-
   createCanvas(windowWidth, windowHeight);
   lineCanv = createGraphics(windowWidth, windowHeight);
   lineCanv.strokeWeight(45);
   lineCanv.stroke(stringCol);
-  introLayer = createGraphics(width,height);
+  introLayer = createGraphics(width, height);
   introLayer.strokeWeight(introStrokeWeight);
   introLayer.stroke(255, 100);
-
   initialiseLine();
   calcDimensions();
   textLayer = createGraphics(windowWidth, windowHeight);
-
   slide = 0;
-
-
   slideShow();
-
 }
 
 function initialiseLine() {
@@ -62,7 +49,6 @@ function initialiseLine() {
     x[i] = random(0, width);
     y[i] = (height / segNum) * i;
   }
-
   dragCalc(0, width / 2, height / 2);
   displayCurrent();
 }
@@ -72,17 +58,12 @@ function displayCurrent() {
   touchMoved();
 }
 
-
 function touchEnded() {
   drawActive = 0;
 }
 
-
-
 function touchMoved() {
-
   if (introState === 3) {
-
     if (multiselectable) {
       if (!drawActive) {
         for (i = 0; i < x.length - 1; i++) {
@@ -98,29 +79,21 @@ function touchMoved() {
       if (drawActive) {
         background(bgCol);
         // do we really need these Layers? // or do we need double the calculation of Lines
-
         lineCanv.clear();
-
         if (beginning) {
           dragCalc(selected, width / 2, height / 2);
           beginning = 0;
         } else {
           dragCalc(selected, winMouseX, winMouseY);
         }
-        blendMode(DIFFERENCE); // DIFFERENCE IS AMAZING // times 10
         image(lineCanv, 0, 20, width, height);
-        blendMode(OVERLAY);
         image(texture, 0, 0, width, height);
-        blendMode(BLEND);
         image(lineCanv, 0, 0, width, height);
       }
     } else {
       background(bgCol);
       // do we really need these Layers? // or do we need double the calculation of Lines
-
       lineCanv.clear();
-
-
       if (beginning) {
         dragCalc(selected, width / 2, height / 2);
         beginning = 0;
@@ -128,24 +101,18 @@ function touchMoved() {
         dragCalc(0, winMouseX, winMouseY);
       }
 
-      blendMode(DIFFERENCE); // DIFFERENCE IS AMAZING // times 10
       image(lineCanv, 0, 20, width, height);
-      blendMode(OVERLAY);
       image(texture, 0, 0, width, height);
-      blendMode(BLEND);
       image(lineCanv, 0, 0, width, height);
     }
   } else {
-   introLayer.background(31, 43, 69, 25);
+    introLayer.background(31, 43, 69, 25);
     dragSegmentIntro(0, mouseX, mouseY);
-dragSegmentIntro(1, xintro[0], yintro[0]);
-segLengthintro = segLengthintro + 0.1;
-introStrokeWeight = introStrokeWeight + 0.04;
-  introLayer.strokeWeight(introStrokeWeight);
-
+    dragSegmentIntro(1, xintro[0], yintro[0]);
+    segLengthintro = segLengthintro + 0.1;
+    introStrokeWeight = introStrokeWeight + 0.04;
+    introLayer.strokeWeight(introStrokeWeight);
   }
-
-
   return false;
 }
 
@@ -191,35 +158,21 @@ function segment(x, y, a) {
   lineCanv.rotate(a);
   lineCanv.line(0, 0, segLength, 0);
   lineCanv.pop();
-
-
 }
 
-
 function draw() {
-
-  if (introState === 3) {
-
-  } else {
-
+  if (introState === 3) {} else {
     blendMode(BLEND);
     background(31, 43, 69, 100);
-
     if (slide > 0) {
-
       blendMode(BLEND);
       fill('#469ede');
       noStroke();
-
     }
-
-    if (slide === 0) {
-    } else {
+    if (slide === 0) {} else {
       textLayer.text(introText[slide - 1], width / 2, (height / 6) * (slide));
     } // this if else statgement needs to be replaced with a better system. The current state tracking is not working
     image(introLayer, 0, 0, width, height);
     image(textLayer, 0, 0, width, height);
-
   }
-
 }
