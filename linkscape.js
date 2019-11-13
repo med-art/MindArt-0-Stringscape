@@ -19,7 +19,7 @@ let driftVal = 0,
 let audio;
 
 function preload() {
-  texture = loadImage('assets/texture4.png');
+  texture = loadImage('assets/texture.png');
   audio = loadSound('assets/audio.mp3');
   click = loadSound('assets/click.mp3');
 }
@@ -86,6 +86,8 @@ function touchMoved() {
         } else {
           dragCalc(selected, winMouseX, winMouseY);
         }
+        image(lineCanv, 0, 40, width, height);
+        image(texture, 0, 0, width, height);
         image(lineCanv, 0, 20, width, height);
         image(texture, 0, 0, width, height);
         image(lineCanv, 0, 0, width, height);
@@ -100,7 +102,8 @@ function touchMoved() {
       } else {
         dragCalc(0, winMouseX, winMouseY);
       }
-
+      image(lineCanv, 0, 40, width, height);
+      image(texture, 0, 0, width, height);
       image(lineCanv, 0, 20, width, height);
       image(texture, 0, 0, width, height);
       image(lineCanv, 0, 0, width, height);
