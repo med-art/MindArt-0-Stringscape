@@ -30,8 +30,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   lineCanv = createGraphics(windowWidth, windowHeight);
   lineCanv.strokeWeight(45);
-  lineCanv.stroke(stringCol);
-    lineCanv.fill(50);
+  lineCanv.stroke(48);
+
   introLayer = createGraphics(width, height);
   introLayer.strokeWeight(introStrokeWeight);
   introLayer.stroke(255, 100);
