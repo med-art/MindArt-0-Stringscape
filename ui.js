@@ -83,7 +83,7 @@ function switcher(){
     button2.position(19 * vMax, height - (10 * vMax));
     button2.mousePressed(switcher);
 
-      segLength =7;
+      segLength =18;
 
   }
 
@@ -120,8 +120,9 @@ function fs(){
 function reset(){
   click.play();
 
-
-initialiseLine();
+x = [];
+y = [];
+initialiseLine(0);
 drawActive = 1;
 displayCurrent();
 

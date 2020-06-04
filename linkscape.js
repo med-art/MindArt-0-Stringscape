@@ -1,7 +1,7 @@
 let x = [],
   y = [],
-  segNum = 300,
-  segLength = 7;
+  segNum = 150,
+  segLength = 18;
 let xintro = [0, 0],
   yintro = [0, 0],
   segLengthintro = 10;
@@ -14,9 +14,11 @@ let lineCanv, // lineLayer
   beginning;
 let bgCol, stringCol;
 let driftVal = 0,
-  selected = 0,
-  drawActive = 1;
+  selected = [0, 0];
+drawActive = 1;
 let audio;
+let constraintActive = false;
+let cutSeg = 0;
 
 function preload() {
   texture = loadImage('assets/texture.png');
@@ -25,32 +27,38 @@ function preload() {
 }
 
 function setup() {
-  stringCol = color('#1c1c1c');
-  bgCol = color('#f2f2f2');
+  stringCol = color('#a1a1a1');
+  bgCol = color('#e5e5e5');
   createCanvas(windowWidth, windowHeight);
+
   lineCanv = createGraphics(windowWidth, windowHeight);
-  lineCanv.strokeWeight(45);
-  lineCanv.stroke(48);
+  lineCanv.strokeWeight(30);
+  lineCanv.stroke(100);
 
   introLayer = createGraphics(width, height);
   introLayer.strokeWeight(introStrokeWeight);
   introLayer.stroke(255, 100);
-  initialiseLine();
+
+  initialiseLine(0);
   calcDimensions();
   textLayer = createGraphics(windowWidth, windowHeight);
   slide = 0;
   slideShow();
 }
 
-function initialiseLine() {
+function initialiseLine(l) {
   // in  this function, each time a new drawing is started
-  // want to create a shape?
-  background(255, 255);
+  x[l] = [];
+  y[l] = [];
+
   for (let i = 0; i < segNum; i++) {
-    x[i] = random(0, width);
-    y[i] = (height / segNum) * i;
+    x[l][i] = random(0, width);
+    y[l][i] = (height / segNum) * i;
+    // y[l][i] = random(0, height);
   }
-  dragCalc(0, width / 2, height / 2);
+
+  selected = [l, 0];
+  dragCalc(selected, width / 2, height / 2);
   displayCurrent();
 }
 
@@ -63,57 +71,81 @@ function touchEnded() {
   drawActive = 0;
 }
 
+function touchStarted() {
+
+  if (introState < 3) {
+    if (audio.isPlaying()) {} else {
+      audio.loop(5);
+    }
+  }
+  if (slide === 0) {
+    click.play();
+    startButton.remove();
+    slide++;
+    slideShow();
+  }
+
+
+  if (!drawActive) {
+
+    // for initial touch state, detect if a position is crossed.
+    for (let i = 0; i < x.length; i++) {
+        for (let j = 0; j < x[i].length; j++) {
+        if (dist(winMouseX, winMouseY, x[i][j], y[i][j]) < 45) {
+          selected[0] = i;
+          selected[1] = j;
+          drawActive = true;
+          break;
+        }
+      }
+    }
+    if (!drawActive && x.length < 7 && multiselectable) {
+      initialiseLine(x.length); // init new line, new array
+    }
+  }
+  return false;
+
+}
+
 function touchMoved() {
   if (introState === 3) {
     if (multiselectable) {
-      if (!drawActive) {
-        for (i = 0; i < x.length - 1; i++) {
-          if (dist(winMouseX, winMouseY, x[i], y[i]) < 45) {
-            selected = i;
-            drawActive = 1;
-            break;
-          } else {
-            drawActive = 0;
-          }
-        }
-      }
       if (drawActive) {
-        background(bgCol);
         // do we really need these Layers? // or do we need double the calculation of Lines
-        lineCanv.clear();
         if (beginning) {
           dragCalc(selected, width / 2, height / 2);
           beginning = 0;
         } else {
           dragCalc(selected, winMouseX, winMouseY);
-      }
-        image(lineCanv, 0, 26, width, height);
-        image(texture, 0, 0, width, height);
-        image(lineCanv, 0, 23, width, height);
-        image(texture, 0, 0, width, height);
-        image(lineCanv, 0, 20, width, height);
-        image(texture, 0, 0, width, height);
-        image(lineCanv, 0, 0, width, height);
+        }
       }
     } else {
-      background(bgCol);
+
+      // find distance to pin
+      let pinDist = dist(mouseX, mouseY, width/1.5, height/1.5)
+      if (pinDist < 30){
+        constraintActive = true;
+      }
+      if (constraintActive){
+      console.log(pinDist);
+        cutSeg = floor(pinDist/segLength);
+      console.log(cutSeg);
+
+      }
+
       // do we really need these Layers? // or do we need double the calculation of Lines
-      lineCanv.clear();
       if (beginning) {
         dragCalc(selected, width / 2, height / 2);
         beginning = 0;
       } else {
-        dragCalc(0, winMouseX, winMouseY);
+        let t = [0, 0]
+        if (constraintActive){
+          dragCalc(t, width/1.5, height/1.5);
+
+        } else {
+        dragCalc(t, winMouseX, winMouseY);
       }
-      image(lineCanv, 0, 26, width, height);
-      image(texture, 0, 0, width, height);
-      image(lineCanv, 0, 23, width, height);
-      image(texture, 0, 0, width, height);
-      image(lineCanv, 0, 20, width, height);
-      image(texture, 0, 0, width, height);
-      image(lineCanv, 0, 0, width, height);
-
-
+      }
     }
   } else {
     introLayer.background(31, 43, 69, 25);
@@ -145,33 +177,74 @@ function segmentIntro(x, y, a) {
 
 function dragCalc(_sel, _mouseX, _mouseY) {
   dragSegment(_sel, _mouseX, _mouseY);
-  for (let j = _sel; j < x.length - 1; j++) {
-    dragSegment(j + 1, x[j], y[j]);
+  let i2 = _sel[0];
+  let j2 = _sel[1];
+  for (let j = j2; j < x[i2].length - 1; j++) {
+    let t = [i2, j + 1];
+    dragSegment(t, x[i2][j], y[i2][j]);
   }
-  for (let j = _sel; j > 0; j--) {
-    dragSegment(j - 1, x[j], y[j]);
+  for (let j = j2; j > 0; j--) {
+    let t = [i2, j - 1];
+    dragSegment(t, x[i2][j], y[i2][j]);
   }
 }
 
-function dragSegment(i, xin, yin) {
-  const dx = xin - x[i];
-  const dy = yin - y[i];
+function dragSegment(_sel, xin, yin) {
+  i = _sel[0];
+  j = _sel[1];
+  const dx = xin - x[i][j];
+  const dy = yin - y[i][j];
   const angle = (atan2(dy, dx));
-  x[i] = xin - cos(angle) * segLength;
-  y[i] = yin - sin(angle) * segLength;
-  segment(x[i], y[i], angle);
-}
-
-function segment(x, y, a) {
-  lineCanv.push();
-  lineCanv.translate(x, y);
-  lineCanv.rotate(a);
-  lineCanv.line(0, 0, segLength, 0);
-  lineCanv.pop();
+  x[i][j] = xin - cos(angle) * segLength;
+  y[i][j] = yin - sin(angle) * segLength;
 }
 
 function draw() {
-  if (introState === 3) {} else {
+
+
+
+  if (introState === 3) {
+    // blendMode(BLEND);
+
+    // blendMode(MULTIPLY);
+    let colours = ['#025373', '#F2C063', '#F29472', '#04ADBF', '#66CDD9'];
+    // let colours = ['#1a1a1a'];
+    lineCanv.clear();
+    for (let i = 0; i < x.length; i++) {
+      //let colour = colors[floor(random(0,colors.length))];
+      lineCanv.stroke(colours[i % colours.length]);
+      for (let j = 0; j < x[i].length - 1 - cutSeg; j++) {
+        lineCanv.line(x[i][j], y[i][j], x[i][j + 1], y[i][j + 1])
+      }
+
+      if (constraintActive){
+          lineCanv.line(mouseX, mouseY, width/1.5, height/1.5);
+      }
+
+      background(0);
+
+
+      for (let i = 5; i > 0; i--){
+      image(lineCanv, 0, i*10, width, height);
+      image(texture, 0, 0, width, height);
+     }
+     image(lineCanv, 0, 0, width, height);
+     ellipse(width/2, height/2, 40, 40);
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+  } else {
     blendMode(BLEND);
     background(31, 43, 69, 100);
     if (slide > 0) {
@@ -185,6 +258,11 @@ function draw() {
     image(introLayer, 0, 0, width, height);
     image(textLayer, 0, 0, width, height);
   }
+
+
+
+
+
 }
 
 
@@ -198,10 +276,10 @@ function windowResized() {
 
   // need to switch the arrays around....
 
-    calcDimensions();
-    if (introState === 3){
-   removeElements();
-   saveNext();
+  calcDimensions();
+  if (introState === 3) {
+    removeElements();
+    saveNext();
 
   }
 }

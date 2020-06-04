@@ -1,24 +1,11 @@
 let introText = ["Touchez", "Regardez", "Ecoutez", "Touchez"];
 let appCol = '#469ede';
 let slide = 4;
-let delayTime = 8000;
+let delayTime = 800;
 let introState = 0;
 let startButton;
 
-function mousePressed() {
-  if (introState < 3) {
-    if (audio.isPlaying()) {} else {
-      audio.loop(5);
-    }
-  }
-  if (slide === 0) {
-    click.play();
-    startButton.remove();
-    slide++;
-    slideShow();
-  }
-  return false;
-}
+
 
 function slideShow() {
   if (slide === 0) {
@@ -41,9 +28,9 @@ function slideShow() {
     textLayer.textAlign(CENTER, CENTER);
     textLayer.rectMode(CENTER);
     if (slide > 0) {
-      if (slide === introText.length - 1) {
-        delayTime = 10000;
-      }
+      // if (slide === introText.length - 1) {
+      //   delayTime = 10000;
+      // }
       slide++;
 
       setTimeout(slideShow, delayTime);
